@@ -2,6 +2,12 @@
 
 This is a GPU-based cloth simulator implemented by CUDA. The algorithm is based on [ARCSim](http://graphics.berkeley.edu/resources/ARCSim/).
 
+## Changes
+- Changed exporting to include obstacles.
+- Introduced a new command line flag (--no-export-obstacles) to disable the export of obstacle data during simulations.
+- Improved the naming convention for saved frame files, making it more intuitive and easier to manage.
+- Adjusted the replay function to accommodate the new naming convention.
+
 # Dependencies
 
 - OpenGL
@@ -32,6 +38,8 @@ The simulator has 5 different modes. All the command mentioned should be run in 
 
 Simulate and display according to a configuration file.
 
+Note: Currently, the simulate mode is not working due to an OpenGL issue.
+
 ```key
 ./build/ClothSimulator simulate [config_file] --gpu
 ```
@@ -44,16 +52,16 @@ For example:
 
 ## Simulate (Offline)
 
-Similar to simulate mode, but will save cloth mesh for every frame to output directory.
+Similar to simulate mode, but will save cloth mesh for every frame to output directory. You can also disable obstacle data export with the '--no-export-obstacles' flag.
 
 ```key
-./build/ClothSimulator simulate_offline [config_file] [output_dir] --gpu
+./build/ClothSimulator simulate_offline [config_file] [output_dir] --gpu [--no-export-obstacles]
 ```
 
 For example:
 
 ```key
-./build/ClothSimulator simulate_offline conf/sphere.json output/sphere --gpu
+./build/ClothSimulator simulate_offline conf/sphere.json output/sphere --gpu [--no-export-obstacles]
 ```
 
 ## Resume
@@ -66,10 +74,10 @@ Resume and display a halted offline simulation.
 
 ## Resume (Offline)
 
-Similar to resume mode, but will save cloth mesh for every frame to output directory.
+Similar to resume mode, but will save cloth mesh for every frame to output directory. You can also disable obstacle data export with the '--no-export-obstacles' flag.
 
 ```key
-./build/ClothSimulator resume_offline [output_dir] --gpu
+./build/ClothSimulator resume_offline [output_dir] --gpu [--no-export-obstacles]
 ```
 
 ## Replay
@@ -77,7 +85,7 @@ Similar to resume mode, but will save cloth mesh for every frame to output direc
 Replay simulation result according to a output directiry. This mode has no GPU mode.
 
 ```key
-./build/ClothSimulator replay [output_dir]
+./build/ClothSimulator replay [output_dir] [--no-export-obstacles]
 ```
 
 # Samples
