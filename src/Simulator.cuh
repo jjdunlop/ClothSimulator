@@ -60,6 +60,7 @@ private:
     Magic* magic;
     int frameSteps, endFrame, nSteps, nFrames;
     float frameTime, endTime, dt, clothFriction, obstacleFriction;
+    bool exportObstacles; 
     Vector3f gravity;
     Wind* wind;
     std::vector<Motion*> motions;
@@ -120,7 +121,7 @@ private:
     void replay();
 
 public:
-    Simulator(SimulationMode mode, const std::string& path, const std::string& directory);
+    Simulator(SimulationMode mode, const std::string& path, const std::string& directory, bool exportObstacles = true);
     ~Simulator();
     void start();
 };

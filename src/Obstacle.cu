@@ -99,3 +99,7 @@ void Obstacle::render(const Matrix4x4f& model, const Matrix4x4f& view, const Mat
     shader->setVec3("lightDirection", lightDirection);
     mesh->render();
 }
+
+void Obstacle::save(const std::string& path) const {
+    mesh->save(path);
+}

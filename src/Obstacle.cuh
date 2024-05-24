@@ -32,6 +32,7 @@ public:
     void step(float dt, const std::vector<Transformation>& transformations);
     void bind();
     void render(const Matrix4x4f& model, const Matrix4x4f& view, const Matrix4x4f& projection, const Vector3f& cameraPosition, const Vector3f& lightDirection) const;
+    void save(const std::string& path) const;
 };
 
 #endif

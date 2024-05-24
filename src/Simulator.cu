@@ -1,10 +1,7 @@
 #include "Simulator.cuh"
 
-Simulator::Simulator(SimulationMode mode, const std::string& path, const std::string& directory) :
-    mode(mode),
-    nSteps(0),
-    nFrames(0),
-    directory(directory) {
+Simulator::Simulator(SimulationMode mode, const std::string& path, const std::string& directory, bool exportObstacles)
+    : mode(mode), directory(directory), nFrames(0), exportObstacles(exportObstacles) {
     pool = mode != Replay ? new MemoryPool() : nullptr;
     renderer = mode == Simulate || mode == Resume || mode == Replay ? new Renderer(900, 900) : nullptr;
 
@@ -912,6 +909,7 @@ void Simulator::replayStep() {
     }
 }
 
+
 void Simulator::bind() {
     for (Cloth* cloth : cloths)
         cloth->bind();
@@ -935,21 +933,28 @@ void Simulator::render() const {
 
 bool Simulator::load() {
     for (int i = 0; i < cloths.size(); i++) {
-        std::string path = directory + "/frame" + std::to_string(nFrames) + "_cloth" + std::to_string(i) + ".obj";
+        std::string path = directory + "/cloth" + std::to_string(i) + "_frame" + std::to_string(nFrames) + ".obj";
         if (!std::filesystem::exists(path))
             return false;
     }
 
     for (int i = 0; i < cloths.size(); i++) {
-        std::string path = directory + "/frame" + std::to_string(nFrames) + "_cloth" + std::to_string(i) + ".obj";
+        std::string path = directory + "/cloth" + std::to_string(i) + "_frame" + std::to_string(nFrames) + ".obj";
         cloths[i]->load(path);
     }
     return true;
 }
 
 void Simulator::save() {
-    for (int i = 0; i < cloths.size(); i++)
-        cloths[i]->save(directory + "/frame" + std::to_string(nFrames) + "_cloth" + std::to_string(i) + ".obj", json["cloths"][i]);
+    for (int i = 0; i < cloths.size(); i++) {
+        cloths[i]->save(directory + "/cloth" + std::to_string(i) + "_frame" + std::to_string(nFrames) + ".obj", json["cloths"][i]);
+    }
+
+    if (exportObstacles) {
+        for (int i = 0; i < obstacles.size(); i++) {
+            obstacles[i]->save(directory + "/obstacle" + std::to_string(i) + "_frame" + std::to_string(nFrames) + ".obj");
+        }
+    }
 
     std::ofstream fout(directory + "/config.json");
     fout << json;
@@ -963,7 +968,7 @@ int Simulator::lastFrame() const {
         ans++;
         flag = true;
         for (int i = 0; i < cloths.size(); i++)
-            if (!std::filesystem::exists(directory + "/frame" + std::to_string(ans) + "_cloth" + std::to_string(i) + ".obj")) {
+            if (!std::filesystem::exists(directory + "/cloth" + std::to_string(i) + "_frame" + std::to_string(ans) + ".obj")) {
                 flag = false;
                 break;
             }

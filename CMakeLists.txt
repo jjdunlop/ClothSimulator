@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
+include_directories(/usr/include/jsoncpp)
 
 if (WIN32)
     set(CMAKE_TOOLCHAIN_FILE "C:/vcpkg/scripts/buildsystems/vcpkg.cmake")
