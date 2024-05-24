@@ -8,6 +8,11 @@ This is a GPU-based cloth simulator implemented by CUDA. The algorithm is based 
 - Improved the naming convention for saved frame files, making it more intuitive and easier to manage.
 - Adjusted the replay function to accommodate the new naming convention.
 
+For example, I used this [plugin](https://github.com/neverhood311/Stop-motion-OBJ) to bring the OBJs into Blender 3.6.
+
+[](https://github.com/jjdunlop/ClothSimulator/assets/66872523/34166f11-a1b1-44a7-8a7f-053b0324f1c9)
+
+
 # Dependencies
 
 - OpenGL
