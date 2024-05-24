@@ -85,7 +85,7 @@ Similar to resume mode, but will save cloth mesh for every frame to output direc
 Replay simulation result according to a output directiry. This mode has no GPU mode.
 
 ```key
-./build/ClothSimulator replay [output_dir] [--no-export-obstacles]
+./build/ClothSimulator replay [output_dir]
 ```
 
 # Samples
