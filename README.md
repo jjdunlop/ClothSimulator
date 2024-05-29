@@ -1,8 +1,8 @@
-# Introduction
+# 🗂Introduction
 
 This is a GPU-based cloth simulator implemented by CUDA. The algorithm is based on [ARCSim](http://graphics.berkeley.edu/resources/ARCSim/).
 
-## Changes
+### Changes
 - Changed exporting to include obstacles.
 - Introduced a new command line flag (--no-export-obstacles) to disable the export of obstacle data during simulations.
 - Improved the naming convention for saved frame files, making it more intuitive and easier to manage.
@@ -12,8 +12,8 @@ For example, I used this [plugin](https://github.com/neverhood311/Stop-motion-OB
 
 [](https://github.com/jjdunlop/ClothSimulator/assets/66872523/34166f11-a1b1-44a7-8a7f-053b0324f1c9)
 
-
-# Dependencies
+# 🛠 Setup
+### Dependencies
 
 - OpenGL
 - GLAD (already in lib directory)
@@ -24,7 +24,7 @@ For example, I used this [plugin](https://github.com/neverhood311/Stop-motion-OB
 
 Note: If you're using Windows, vspkg is recommended to install dependencies.
 
-# Build
+### Build
 
 Run the following command in this directory:
 
@@ -35,11 +35,11 @@ cmake ..
 make all
 ```
 
-# Usage
+# 📑 Usage
 
 The simulator has 5 different modes. All the command mentioned should be run in this directory. Drop the --gpu parameter if you want CPU simulation.
 
-## Simulate
+### Simulate
 
 Simulate and display according to a configuration file.
 
@@ -55,7 +55,7 @@ For example:
 ./build/ClothSimulator simulate conf/sphere.json --gpu
 ```
 
-## Simulate (Offline)
+### Simulate (Offline)
 
 Similar to simulate mode, but will save cloth mesh for every frame to output directory. You can also disable obstacle data export with the '--no-export-obstacles' flag.
 
@@ -69,7 +69,7 @@ For example:
 ./build/ClothSimulator simulate_offline conf/sphere.json output/sphere --gpu [--no-export-obstacles]
 ```
 
-## Resume
+### Resume
 
 Resume and display a halted offline simulation.
 
@@ -77,7 +77,7 @@ Resume and display a halted offline simulation.
 ./build/ClothSimulator resume [output_dir] --gpu
 ```
 
-## Resume (Offline)
+### Resume (Offline)
 
 Similar to resume mode, but will save cloth mesh for every frame to output directory. You can also disable obstacle data export with the '--no-export-obstacles' flag.
 
@@ -85,7 +85,7 @@ Similar to resume mode, but will save cloth mesh for every frame to output direc
 ./build/ClothSimulator resume_offline [output_dir] --gpu [--no-export-obstacles]
 ```
 
-## Replay
+### Replay
 
 Replay simulation result according to a output directiry. This mode has no GPU mode.
 
@@ -93,7 +93,26 @@ Replay simulation result according to a output directiry. This mode has no GPU m
 ./build/ClothSimulator replay [output_dir]
 ```
 
-# Samples
+# 📬 Feedback
+If you find any problems, feel free to raise an `Issue` or to contribute with a `Pull Request`!
+
+
+# 📜 Credits
+
+I am not the author of this code, I just made modifications. Full credits go to the original authors. The original GPU accelerated code can be found [here](https://github.com/Wajov/ClothSimulator).
+
+
+If you use this code for a publication, make sure to cite the following papers:
+
+>Rahul Narain, Armin Samii, and James F. O'Brien. "Adaptive Anisotropic Remeshing for Cloth Simulation". ACM Transactions on Graphics, 31(6):147:1–10, November 2012. Proceedings of ACM SIGGRAPH Asia 2012, Singapore.
+
+>Rahul Narain, Tobias Pfaff, and James F. O'Brien. "Folding and Crumpling Adaptive Sheets". ACM Transactions on Graphics, 32(4):51:1–8, July 2013. Proceedings of ACM SIGGRAPH 2013, Anaheim.
+
+>Tobias Pfaff, Rahul Narain, Juan Miguel de Joya, and James F. O'Brien. "Adaptive Tearing and Cracking of Thin Sheets". ACM Transactions on Graphics, 33(4):110:1–9, July 2014. Proceedings of ACM SIGGRAPH 2014, Vancouver.
+
+
+
+# 👀  Samples
 
 Here are some offline results:
 
